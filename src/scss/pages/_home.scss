@@ -1,10 +1,90 @@
 @use '../abstracts' as *;
 
-.wrapper {
+.panels {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
   height: 100%;
-  padding: 0 10px;
+
+  @include tablet {
+    flex-direction: row;
+  }
+
+  &__item {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    box-shadow: inset 0 0 0 5px rgba(255, 255, 255, .1);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    color: $white;
+    font: 2.4rem/3.2rem a;
+    font-family: inherit;
+    text-shadow: 0 0 4px rgba(0,0,0,.5);
+    cursor: pointer;
+    transition: flex .7s cubic-bezier(.61, -.19, .7, -.11) 0s,
+      font .7s cubic-bezier(.61, -.19, .7, -.11) 0s;
+
+    @include tablet {
+      font-size: 3.6rem;
+      line-height: 4.4rem;
+    }
+
+    &.is-open {
+      flex: 5;
+      font-size: 3.2rem;
+      line-height: 4rem;
+      @include tablet {
+        font-size: 5.7rem;
+        line-height: 6.4rem;
+      }
+    }
+  }
+
+  &__item-1 {
+    background-image: url(./images/img01.jpg);
+  }
+  &__item-2 {
+    background-image: url(./images/img02.jpg);
+  }
+  &__item-3 {
+    background-image: url(./images/img03.jpg);
+  }
+  &__item-4 {
+    background-image: url(./images/img04.jpg);
+  }
+  &__item-5 {
+    background-image: url(./images/img05.jpg);
+  }
+
+  &__text {
+    flex: 1 0 auto;
+    display: flex;
+    align-items: center;
+    white-space: pre;
+    transition: transform .3s linear .3s;
+  }
+
+  &__text:first-child,
+  &__text:last-child {
+    font-size: .5em;
+    line-height: .5em;
+  }
+
+  &__text:first-child {
+    transform: translateY(-100%);
+  }
+
+  &__text:last-child {
+    transform: translateY(100%);
+  }
+
+  &__item.is-open &__text:first-child,
+  &__item.is-open &__text:last-child {
+    transition-delay: .7s;
+    transform: translateY(0);
+  }
 }
